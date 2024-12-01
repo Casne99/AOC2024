@@ -1,21 +1,14 @@
-import groovyjarjarantlr4.v4.runtime.misc.Tuple2
-
-def input = new File('in.txt').readLines().collect {
+def lists = new File('in.txt').readLines().collect {
     def splitted = it.split('\\s+')
-    new Tuple2<>(splitted[0] as int, splitted[1] as int)
-}
+    [splitted[0] as int, splitted[1] as int]
+}.transpose().collect { it.toSorted() }
 
-def l = input.collect { it.item1 }
-def r = input.collect { it.item2 }
-l.sort()
-r.sort()
 
-def ans = 0
-for( int i = 0; i < l.size(); i++) {
-    ans += mod(l[i] - r[i])
-}
+def ans = (0..<lists[0].size()).collect {
+    mod(lists[0][it] - lists[1][it])
+}.sum()
 
-println(ans)
+println("Answer is ${ans}")
 
 static int mod(final int i) {
     i > 0 ? i : -i
