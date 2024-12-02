@@ -39,11 +39,12 @@ static boolean isSorted(final List<Integer> l) {
 }
 
 static Set<List<Integer>> s(final List<Integer> input) {
-    def res = [] as Set<List<Integer>>
-    (0..<input.size()).each { i ->
-        res.add((0..<input.size()).findAll { it != i }.collect { input[it] })
+    def r = 0..<input.size()
+    r.collect { i ->
+        r.findAll { it != i }.collect {
+            input[it]
+        }
     }
-    return res
 }
 
 
