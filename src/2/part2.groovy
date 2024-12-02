@@ -5,7 +5,7 @@ def sequences = new File('in.txt').readLines().collect {
 int ans = 0
 
 for (List<Integer> sequence : sequences) {
-    if (isValid(sequence) || (s(sequence).count { it -> isValid(it) } > 0)) {
+    if (isValid(sequence) || (s(sequence).any { it -> isValid(it) })) {
         ans++
     }
 }
