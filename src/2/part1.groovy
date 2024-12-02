@@ -9,7 +9,7 @@ for (List<Integer> sequence : sequences) {
         ans++
 }
 
-private static boolean isValid(List<Integer> sequence) {
+private static boolean isValid(final List<Integer> sequence) {
     for (int i = 0; i < sequence.size() - 1; i++) {
         def mod = mod(sequence[i] - sequence[i + 1])
         if (mod > 3 || mod < 1) {
@@ -27,7 +27,7 @@ static int mod(final int i) {
     return i > 0 ? i : -i
 }
 
-static boolean isSorted(List<Integer> l) {
+static boolean isSorted(final List<Integer> l) {
     def ans = true
     boolean ascending = l[0] < l[1]
     for (int i = 0; i < l.size() - 1; i++) {
