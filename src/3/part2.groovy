@@ -8,7 +8,7 @@ def setMode = [
 
 def ans = (lines.join() =~ /mul\((\d+),(\d+)\)|do\(\)|don't\(\)/).collect { match ->
     setMode[match[0]]?.call()
-    enabled && match[1] != null ? (match[1] as int) * (match[2] as int) : 0
+    enabled && match[1] ? (match[1] as int) * (match[2] as int) : 0
 }.sum()
 
 println("Answer is ${ans}")
