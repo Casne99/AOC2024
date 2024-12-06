@@ -26,15 +26,23 @@ class Solver {
 
 
     int solve() {
-        def visited = [[operator.curr_x, operator.curr_y]] as HashSet
+        def visited = [[operator.curr_x, operator.curr_y]] as HashSet<List<Integer>>
         while (operator.peek() != null) {
             String next = operator.peek()
-            if (next != '.' && next != '^')
+            while (valid(next)) {
                 operator.turnRight()
-            operator.move()
-            visited.add([operator.curr_x, operator.curr_y])
+                next = operator.peek()
+            }
+            if (next != null) {
+                operator.move()
+                visited.add([operator.curr_x, operator.curr_y])
+            }
         }
         return visited.size()
+    }
+
+    private static boolean valid(String next) {
+        return next != null && next != '.' && next != '^'
     }
 
 
@@ -78,7 +86,7 @@ class Solver {
 
         void turnRight() {
             def directions = Strategy.values()
-            while (peek() != '.') {
+            if (peek() != '.' && peek() != '^') {
                 currStrategy = directions[(currStrategy.ordinal() + 1) % directions.length]
             }
         }
