@@ -15,7 +15,7 @@ class Solver {
         def found = false
         for (int y = 0; y < area.size(); y++) {
             if (area[y].contains('^')) {
-                this.operator = new Operator(area[y].indexOf('^'), y);
+                this.operator = new Operator(area[y].indexOf('^'), y)
                 found = true
             }
         }
