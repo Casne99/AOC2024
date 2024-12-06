@@ -29,7 +29,7 @@ class Solver {
         def visited = [[operator.curr_x, operator.curr_y]] as HashSet<List<Integer>>
         while (operator.peek() != null) {
             String next = operator.peek()
-            while (valid(next)) {
+            while (isObstacle(next)) {
                 operator.turnRight()
                 next = operator.peek()
             }
@@ -41,7 +41,7 @@ class Solver {
         return visited.size()
     }
 
-    private static boolean valid(String next) {
+    private static boolean isObstacle(String next) {
         return next != null && next != '.' && next != '^'
     }
 
