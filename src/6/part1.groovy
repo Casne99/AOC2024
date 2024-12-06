@@ -1,4 +1,4 @@
-List<List<String>> grid = new File('in.txt').readLines().reverse()
+List<String> grid = new File('in.txt').readLines().reverse()
 
 Solver solver = new Solver(grid)
 print(solver.solve())
@@ -6,11 +6,11 @@ print(solver.solve())
 
 class Solver {
 
-    List<List<String>> area
+    List<String> area
     Operator operator
 
 
-    Solver(List<List<String>> area) {
+    Solver(List<String> area) {
         this.area = area
         def found = false
         for (int y = 0; y < area.size(); y++) {
