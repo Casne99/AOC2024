@@ -67,7 +67,7 @@ class Solver {
 
         String peek() {
             def (int x, int y) = getNextCoords()
-            return x < area[0].size() && y < area.size() && x > -1 && y > -1 ? area[y][x] : null
+            return x in 0..<area[0].size() && y in 0..<area.size() ? area[y][x] : null
         }
 
         void move() {
