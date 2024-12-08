@@ -54,16 +54,15 @@ class Antenna {
         return "ID: $id | X: $x | Y: $y"
     }
 
-    List<List<Integer>> findAntiNode(final Antenna other, int ylim, int xlim) {
+    List<Integer> findAntiNode(final Antenna other, int ylim, int xlim) {
         if (this == other)
             return null
 
         int deltax = x - other.x
         int deltay = y - other.y
 
-        def res = []
         if (deltay == 0)
-            while (x + deltax > -1 && x + deltax < xlim) {
+            if (x + deltax > -1 && x + deltax < xlim) {
                 return [y, x + deltax]
             }
 
