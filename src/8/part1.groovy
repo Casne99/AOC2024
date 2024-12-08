@@ -64,9 +64,8 @@ class Antenna {
         def res = []
         if (deltay == 0)
             while (x + deltax > -1 && x + deltax < xlim) {
-                res
+                return [y, x + deltax]
             }
-                // return [y, x + deltax]
 
         if (deltax == 0)
             if (y + deltay > -1 && y + deltay < ylim)
