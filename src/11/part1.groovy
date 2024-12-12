@@ -2,7 +2,7 @@ def input = new File('in.txt').readLines().get(0).split(' ').collect { it -> it 
 
 25.times {
     input = input.collect { a -> step(a) }.flatten()
-            .collect { it as long}
+            .collect { it as long }
 }
 
 println(input.size())

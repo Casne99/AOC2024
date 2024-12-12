@@ -17,7 +17,7 @@ static boolean isValid(final long result, List<Long> numbers) {
         return false
     long n = numbers.remove(0)
     if (n == result && numbers.isEmpty()) return true
-    else if (numbers.isEmpty()) return false
+    if (numbers.isEmpty() || n > result) return false
     long next = numbers.remove(0)
     return isValid(result, [n + next] + numbers) ||
             isValid(result, [n * next] + numbers)
