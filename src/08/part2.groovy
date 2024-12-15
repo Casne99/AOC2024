@@ -1,3 +1,5 @@
+import groovy.transform.Immutable
+
 def input = new File('in.txt').readLines().reverse()
 def antennas = [] as List<Antenna>
 for (int y = 0; y < input.size(); y++) {
@@ -8,7 +10,7 @@ for (int y = 0; y < input.size(); y++) {
 }
 
 def groupedByFrequency = antennas.groupBy { it.freq }
-def antiNodes = [] as HashSet<List<Integer>>
+def antiNodes = [] as HashSet<Coordinate>
 
 groupedByFrequency.each { _, group ->
     group.each { antenna1 ->
@@ -21,36 +23,14 @@ groupedByFrequency.each { _, group ->
 
 println(antiNodes.size())
 
+@Immutable
 class Antenna {
+    char freq
+    int y
+    int x
 
-    public final char freq
-    public final int y
-    public final int x
-
-    Antenna(char freq, int y, int x) {
-        this.freq = freq
-        this.y = y
-        this.x = x
-    }
-
-    @Override
-    boolean equals(Object obj) {
-        if (obj == null) return false
-        if (!(obj instanceof Antenna)) return false
-        Antenna other = (Antenna) obj
-        return freq == other.freq && y == other.y && x == other.x
-    }
-
-    @Override
-    int hashCode() {
-        return Objects.hash(freq, x, y)
-    }
-
-
-    List<List<Integer>> findAntiNodes(final Antenna other, int ylim, int xlim) {
-
+    List<Coordinate> findAntiNodes(final Antenna other, int ylim, int xlim) {
         assert freq == other.freq
-
         if (this == other)
             return null
 
@@ -62,11 +42,17 @@ class Antenna {
 
         if (y + deltay * mul in yrange && x + deltax * mul in xrange) {
             while (y + deltay * mul in yrange && x + deltax * mul in xrange) {
-                res.add([y + deltay * mul, x + deltax * mul])
+                res.add(new Coordinate(y + deltay * mul, x + deltax * mul))
                 mul++
             }
             return res
         }
         return null
     }
+}
+
+@Immutable
+class Coordinate {
+    int y
+    int x
 }
